@@ -1,0 +1,57 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/home-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1> Project Portfolio</h1>
+            <span class="subheading">A collection of my works.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% for project in all_projects %}
+        <div class="post-preview">
+          <a href="{{ url_for('show_project', project_id=project.id) }}">
+            <h2 class="post-title">
+              {{project.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{project.subtitle}}
+            </h3>
+          </a>
+          <p class="post-meta">Delete project
+
+            <!--        If user id is 1 then they can see the delete button -->
+            {% if current_user.id == 1: %}
+            <a href="{{url_for('delete_project', project_id=project.id) }}">✘</a>
+            {% endif %}
+          
+          </p>
+        </div>
+        <hr>
+        {% endfor %}
+
+
+        <!-- New Project -->
+        <!--    If user id is 1 then they can see the Create New Project button -->
+        {% if current_user.id == 1: %}
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{{url_for('add_new_project')}}">Create New Project</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <hr>
+
+{% include "footer.html" %}
