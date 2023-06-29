@@ -19,7 +19,7 @@ ckeditor = CKEditor(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///project-portfolio.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:->q9J`*%5DqFqe9r7+@localhost:5432/postgres"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -55,8 +55,8 @@ class Contact(db.Model):
 
 
 # Only need to run this code the first time
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 
 @app.route('/')
