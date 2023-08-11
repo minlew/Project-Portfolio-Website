@@ -25,7 +25,6 @@ db = SQLAlchemy(app)
 
 
 ##CONFIGURE TABLES
-
 class ProjectPost(db.Model):
     __tablename__ = "project_posts"
     id = db.Column(db.Integer, primary_key=True)
